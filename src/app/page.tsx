@@ -1,25 +1,16 @@
-import { Navbar }            from "@/components/layout/Navbar";
-import { HeroSection }       from "@/components/sections/HeroSection";
-import { AboutSection }      from "@/components/sections/AboutSection";
-import { ExperienceSection } from "@/components/sections/ExperienceSection";
-import { StackSection }      from "@/components/sections/StackSection";
-import { ProjectsSection }   from "@/components/sections/ProjectsSection";
-import { ContactSection }    from "@/components/sections/ContactSection";
 import { ChatSection } from "@/components/sections/ChatSection";
+import SpaceScene      from "@/components/three/SpaceScene";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <HeroSection />
+    <main className="relative h-screen w-full overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <SpaceScene />
+      </div>
+
+      <div className="relative flex h-full items-center justify-center px-6">
         <ChatSection />
-        <AboutSection />
-        <ExperienceSection />
-        <StackSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

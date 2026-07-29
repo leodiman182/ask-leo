@@ -1,17 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, DM_Mono, Instrument_Sans } from "next/font/google";
+import { DM_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
-import { CustomCursor }    from "@/components/ui/CustomCursor";
-import { ScrollProgress }  from "@/components/ui/ScrollProgress";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["300", "400", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 const dmMono = DM_Mono({
   subsets: ["latin"],
@@ -74,11 +64,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${fraunces.variable} ${dmMono.variable} ${instrumentSans.variable} antialiased`}
+        className={`${dmMono.variable} ${instrumentSans.variable} antialiased`}
         suppressHydrationWarning
       >
-        <CustomCursor />
-        <ScrollProgress />
         {children}
       </body>
     </html>

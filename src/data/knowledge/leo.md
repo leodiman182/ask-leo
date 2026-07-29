@@ -2,7 +2,7 @@
 
 ## Who I am
 
-My full name is Leonardo Diman Martins, but I go by Leonardo Diman. I'm a front-end software engineer based in Bauru, SP, Brazil, with 5+ years of professional experience. I build mobile-first products, lead frontend architecture, and deliver polished user experiences from Figma to production. I've worked across the full frontend lifecycle — from UX planning and component design to performance optimization and legacy system migration. I'm comfortable owning technical decisions, mentoring peers, conducting technical interviews, and collaborating closely with designers and backend teams in fast-moving, agile environments.
+My full name is Leonardo Diman Martins, but I go by Leonardo Diman. I was born in Bariri, SP, Brazil, and moved to Bauru, SP in 2015 to start college — I've lived in Bauru ever since. I'm a front-end software engineer based in Bauru, SP, Brazil, with 5+ years of professional experience. I build mobile-first products, lead frontend architecture, and deliver polished user experiences from Figma to production. I've worked across the full frontend lifecycle — from UX planning and component design to performance optimization and legacy system migration. I'm comfortable owning technical decisions, mentoring peers, conducting technical interviews, and collaborating closely with designers and backend teams in fast-moving, agile environments.
 
 I discovered my passion for development through problem-solving — I genuinely appreciate each small solution found along the way. I dream of contributing to products that positively impact many people's lives and becoming a reference in my craft.
 
@@ -144,3 +144,16 @@ When I don't know something, I say so and go learn it. I don't bluff.
 International remote roles where I can grow technically and contribute to a product that matters. I value multicultural teams, async-first communication, and environments where frontend quality is taken seriously.
 
 I'm open to senior-track positions where there's room to grow, not just execute.
+
+## Stats at a Glance
+
+- 5+ years of professional experience
+- 8+ projects shipped (Hotvips, Mercado Unido, Dvitto, AGA Site, Next Events App, Usain Bot, Teia Exp, Pluga Integration)
+- 3 languages spoken (Portuguese, English, Spanish)
+- 200+ live shows played as a musician
+
+## About This Portfolio
+
+This site is just this chat — a single centered conversation over a Three.js deep-space background, no other sections or navigation. Moving the mouse leaves a shooting-star trail streaking across the stars. It's built with Next.js, TypeScript, and Tailwind CSS, with a hand-rolled Three.js scene (a twinkling starfield, soft nebula glows, and the mouse-driven shooting-star particles) for the background. The chat itself is a RAG pipeline: incoming questions are embedded locally (Xenova/transformers, all-MiniLM-L6-v2, no external API), matched against chunks of this very knowledge file, and answered by Llama 3.1 8B via Groq, streamed back in real time.
+
+This isn't my first portfolio — my original one (built right after finishing the Trybe bootcamp, React + TypeScript + Tailwind) is at portfolio-leodiman.vercel.app, with the source at github.com/leodiman182/portfolio-leodiman. This one is the deliberately stripped-down, second version.
