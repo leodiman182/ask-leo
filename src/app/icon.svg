@@ -1,25 +1,69 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="32" height="32">
-  <path
-    d="M34 16c-2.4-3.1 2.4-4.6 0-7.7M22 16c-2.4-3.1 2.4-4.6 0-7.7"
-    fill="none"
-    stroke="#a89880"
-    stroke-width="2.2"
-    stroke-linecap="round"
-    opacity="0.65"
-  />
-  <path
-    d="M40 26h4a9 9 0 0 1 0 18h-4"
-    fill="none"
-    stroke="#8b6043"
-    stroke-width="4"
-    stroke-linecap="round"
-  />
-  <path
-    d="M16 20H40V46a8 8 0 0 1-8 8H24a8 8 0 0 1-8-8Z"
-    fill="#e0c9a6"
-    stroke="#8b6043"
-    stroke-width="2.4"
-    stroke-linejoin="round"
-  />
-  <ellipse cx="28" cy="20" rx="11.4" ry="3" fill="#5c3e2a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Deep space base -->
+    <radialGradient id="space" cx="35%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#191634"/>
+      <stop offset="60%" stop-color="#0c0a18"/>
+      <stop offset="100%" stop-color="#05040a"/>
+    </radialGradient>
+
+    <!-- Nebula blobs, same hues as the 3D scene -->
+    <radialGradient id="neb1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b3f8f" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#3b3f8f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="neb2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6a3f8f" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#6a3f8f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="neb3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2f6a72" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#2f6a72" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Same ramp as the "Leonardo Diman" wordmark -->
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0.35">
+      <stop offset="0%" stop-color="#f0dfc0"/>
+      <stop offset="50%" stop-color="#d9b3c2"/>
+      <stop offset="100%" stop-color="#8fa8cc"/>
+    </linearGradient>
+
+    <clipPath id="round">
+      <rect width="64" height="64" rx="14"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="64" height="64" fill="url(#space)"/>
+
+    <circle cx="12" cy="16" r="26" fill="url(#neb1)"/>
+    <circle cx="58" cy="52" r="24" fill="url(#neb2)"/>
+    <circle cx="34" cy="8"  r="20" fill="url(#neb3)"/>
+
+    <!-- Stars -->
+    <g fill="#ffffff">
+      <circle cx="9"  cy="42" r="1.1" opacity="0.85"/>
+      <circle cx="19" cy="10" r="0.8" opacity="0.6"/>
+      <circle cx="52" cy="14" r="1.2" opacity="0.9"/>
+      <circle cx="57" cy="27" r="0.7" opacity="0.5"/>
+      <circle cx="6"  cy="26" r="0.7" opacity="0.55"/>
+      <circle cx="27" cy="55" r="0.9" opacity="0.7"/>
+      <circle cx="44" cy="57" r="0.7" opacity="0.5"/>
+      <circle cx="38" cy="20" r="0.6" opacity="0.45"/>
+    </g>
+
+    <!-- aL -->
+    <text
+      x="32"
+      y="43"
+      text-anchor="middle"
+      font-family="'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
+      font-size="30"
+      font-weight="600"
+      letter-spacing="-0.5"
+      fill="url(#ink)"
+    >aL</text>
+
+    <rect width="64" height="64" rx="14" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+  </g>
 </svg>
