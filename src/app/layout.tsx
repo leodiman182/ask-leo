@@ -17,7 +17,10 @@ const instrumentSans = Instrument_Sans({
   display: "swap",
 });
 
+const SITE_URL = "https://ask-leo-seven.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Leonardo Diman — Frontend Developer",
   description:
     "Mid-level Frontend Developer with 5 years of experience building mobile-first products. Open to international remote opportunities.",
@@ -30,12 +33,12 @@ export const metadata: Metadata = {
     "Remote",
     "Brazil",
   ],
-  authors: [{ name: "Leonardo Diman", url: "https://portfolio-leodiman.vercel.app" }],
+  authors: [{ name: "Leonardo Diman", url: SITE_URL }],
   openGraph: {
     title: "Leonardo Diman — Frontend Developer",
     description:
       "Mid-level Frontend Developer with 5 years of experience. Open to remote opportunities.",
-    url: "https://portfolio-leodiman.vercel.app",
+    url: SITE_URL,
     siteName: "Leonardo Diman",
     locale: "en_US",
     type: "website",
