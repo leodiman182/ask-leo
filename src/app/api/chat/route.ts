@@ -46,7 +46,7 @@ export async function POST(req: Request) {
   // question is what used to drop answers on Portuguese queries — see knowledge.ts.
   const context = getKnowledge();
 
-  const { id, reasoning } = await resolveChatModel();
+  const { id, reasoning, effort } = await resolveChatModel();
 
   const result = streamText({
     model: groq(id),
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     ...(reasoning
       ? {
           providerOptions: {
-            groq: { reasoningEffort: "low", reasoningFormat: "hidden" },
+            groq: { reasoningEffort: effort, reasoningFormat: "hidden" },
           },
           maxOutputTokens: 400,
         }
@@ -67,10 +67,22 @@ export async function POST(req: Request) {
 
   return result.toUIMessageStreamResponse({
     onError: (error) => {
-      // Without this the SDK masks failures as "An error occurred", which is how
-      // the dead-model 404 reached the user as silence.
+      // Log the provider's real message: it's how the dead-model 404 was found,
+      // and the SDK would otherwise mask everything as "An error occurred".
       console.error("[chat] stream failed:", error);
-      return error instanceof Error ? error.message : String(error);
+
+      // What goes back to the browser is a sentence written here, never the
+      // provider's text — that carries the Groq org id and a billing link, which
+      // a visitor with devtools open should not be reading off my portfolio.
+      const raw = error instanceof Error ? error.message : String(error);
+
+      // The free tier caps tokens per day, so this is the failure a visitor is
+      // most likely to hit: the chat is fine, the day's budget is gone.
+      if (/rate limit|429|tokens per day|TPD/i.test(raw)) {
+        return "I've had a lot of questions today and hit my daily limit — try again tomorrow, or reach me directly at leonardo.diman@gmail.com.";
+      }
+
+      return "Something broke on my end — try again, or reach me directly at leonardo.diman@gmail.com.";
     },
   });
 }

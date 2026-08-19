@@ -232,8 +232,12 @@ export function ChatSection() {
             {error && (
               <motion.div key="error" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <p className="text-sm text-red-300/80">
-                  Something broke on my end — try again, or reach me directly at
-                  leonardo.diman@gmail.com
+                  {/* The route hands back a sentence meant to be read — the daily
+                      rate limit reads very differently from a real breakage, and
+                      "try again" is the wrong advice for it. Anything unexpected
+                      still falls back to the generic line. */}
+                  {error.message ||
+                    "Something broke on my end — try again, or reach me directly at leonardo.diman@gmail.com"}
                 </p>
               </motion.div>
             )}
