@@ -19,7 +19,7 @@ I'm actively looking for international remote opportunities where I can contribu
 ## Languages
 
 - Portuguese: Native
-- English: Advanced
+- English: Advanced — fluency certificate from ELS Language Centers (San Diego, CA), plus 4 years teaching English professionally
 - Spanish: Intermediate
 
 ## Work Experience
@@ -63,9 +63,9 @@ Stack: React, Vue.js, Tailwind, Bootstrap, Laravel, Node.js
 
 Stack: HTML, CSS, JavaScript, Bootstrap, React
 
-### Professor — CNA Idiomas | Oficial (Jun 2018 — Dec 2018, Bauru e Região, Brazil)
+### Professor — CNA Idiomas | Oficial (Jan 2018 — Dec 2018, Bauru e Região, Brazil)
 
-Taught English before transitioning into web development.
+Taught English for a year, alongside my final year of the International Relations degree at USC, before transitioning into web development.
 
 ### Professor — Wizard (Jan 2011 — Dec 2013, Bariri, Brazil)
 
@@ -116,6 +116,30 @@ Node.js, Express.js, REST APIs, AWS, AWS Amplify, Docker, MySQL, MongoDB, Mongoo
 ### Tooling & Workflow
 Git, Figma, Jest, React Testing Library (RTL), Python, Monorepo, Axios
 
+## My Story — How I Got Here
+
+I was born on April 24, 1995 in Bariri, a small city in the interior of São Paulo state, Brazil. My path into software was anything but straight: International Relations, four years teaching English, a band, and a podcast all came before my first line of production code. I don't treat that as lost time — communication, being in front of people, and figuring out what someone actually needs are the through-line of everything I did before tech, and they're the parts of the job I'm best at today.
+
+### School and my first job (Bariri, until 2013)
+
+I studied at the same school my whole childhood — COEBA (Cooperativa Educacional de Bariri) — from first grade all the way through the end of high school. At 15 I spent a month in San Diego, California on an intensive English course and earned a fluency certificate from ELS Language Centers. Right after I got back, I started teaching English at Wizard in Bariri. That was my first job, at 15, and I stayed for three years.
+
+### The false start (2014)
+
+Out of high school I passed the entrance exam for a Tourism degree at UNESP in Rosana, SP, and lasted six months before admitting it wasn't what I wanted. I moved back to Bariri and spent the rest of the year commuting daily to Jaú for a university entrance prep course. Dropping out of a degree I'd worked to get into was uncomfortable, but staying in it would have cost far more than the six months did.
+
+### International Relations, the band, and Prague (2015–2018)
+
+In 2015 I moved to Bauru to study International Relations at USC — Universidade do Sagrado Coração, and graduated four years later. I've lived in Bauru ever since. Those four years were full: I played in my band Zandare, recording 2 albums and playing 200+ live shows; I spent three months in the Czech Republic through AIESEC, teaching English and music; and in my final year I taught English at CNA.
+
+### The pivot (2019–2021)
+
+After graduating I left the band and started Prosa Interior, a podcast I co-hosted as a duo, interviewing people from Bariri who were doing something different with their lives. We recorded 50+ episodes. It was in this same stretch that I found programming and began the career change in earnest — teaching myself until I landed my first developer job at AGA Tecnologia in June 2021. I only started the Trybe full stack bootcamp that November, five months after I was already working as a developer.
+
+### In tech (2021–present)
+
+From there the story is the one on my resume: AGA Tecnologia (Jun 2021 — Feb 2023), Cotefácil (Apr 2023 — May 2025, junior to mid-level), and eSapiens since May 2025, where I am now.
+
 ## Education & Background
 
 - Full Stack Web Development bootcamp at Trybe (Nov 2021 — Jan 2023)
@@ -125,11 +149,43 @@ The IR background gives me a broader perspective on multicultural teams, communi
 
 ## Personal & Hobbies
 
-- Musician with 200+ live shows and digital releases
-- Gamer and vintage console collector
-- Co-host of the Prosa Interior podcast (50+ episodes)
-- Traveler — lived in the United States and Czech Republic
+What I'm into these days:
+
+- Gamer and vintage console collector (The Last of Us, Bloodborne, Red Dead Redemption, and Zelda are my favorites)
+- Traveler — a month in San Diego, CA on an intensive English course, and three months in the Czech Republic through AIESEC, teaching English and music
 - Camping, offroad, and nature lover
+- Football and basketball fan — São Paulo FC in football, Bauru Basket and the NBA in basketball
+
+Fun facts about me — things I did in the past, not things I still do:
+
+- I was a musician — my band was called Zandare. We recorded 2 albums and played 200+ live shows. I don't play anymore, but the music stayed
+- I co-hosted the Prosa Interior podcast — 50+ episodes, in a duo. We interviewed people from Bariri, my hometown, who were doing something different with their lives: a doctor, a radio announcer, a teacher, a physiotherapist, the city mayor. The format was a loose, personal conversation rather than a formal interview. Also wrapped up — a good story, not a current gig
+
+## Favorites (Food, Sports, Series, Movies, Games, Music)
+
+### Favorite foods
+
+My favorite foods and desserts: pancakes (panqueca), hamburgers, doce de leite, key lime pie (torta de limão), and cheesecake. Sweet tooth is a real part of the package — doce de leite, torta de limão, and cheesecake are the three I never turn down.
+
+### Favorite sports and teams
+
+Football (soccer) is my main sport — I support São Paulo Futebol Clube, and I follow plenty of other leagues beyond Brazilian football. I'm also a big basketball fan: I follow the NBA closely and I root for Bauru Basket in the NBB (Novo Basquete Brasil), the team from the city I live in.
+
+### Favorite TV series
+
+My favorite series: Breaking Bad, The Office, Parks and Recreation, Sons of Anarchy, Sherlock, Pluribus, and Avatar: The Last Airbender (Avatar - A Lenda de Aang).
+
+### Favorite movies
+
+My favorite movies are Inglourious Basterds (Bastardos Inglórios) and Pulp Fiction — I'm a big Quentin Tarantino fan in general.
+
+### Favorite games
+
+My favorite video games: The Last of Us Part I and Part II, Bloodborne, Red Dead Redemption 1 and 2, and The Legend of Zelda: Breath of the Wild and Tears of the Kingdom. Story-driven single-player games are my thing, which pairs well with collecting vintage consoles.
+
+### Favorite bands and music
+
+My favorite bands: Blink-182, Green Day, Forfun, Passafire, Red Hot Chili Peppers, Bullet Bane, Rancore, CPM 22, and Charlie Brown Jr. Punk rock, rock nacional brasileiro, and reggae/rock blends are the core of what I listen to — it's the same world I came from back when I played in Zandare — 2 albums and 200+ live shows. I don't play anymore, so that one's a fun fact about me rather than something I still do.
 
 ## Work Philosophy & Personality
 
@@ -150,10 +206,10 @@ I'm open to senior-track positions where there's room to grow, not just execute.
 - 5+ years of professional experience
 - 8+ projects shipped (Hotvips, Mercado Unido, Dvitto, AGA Site, Next Events App, Usain Bot, Teia Exp, Pluga Integration)
 - 3 languages spoken (Portuguese, English, Spanish)
-- 200+ live shows played as a musician
+- 2 albums recorded and 200+ live shows played with my band Zandare, plus 50+ podcast episodes — all from a past life, not current activities
 
 ## About This Portfolio
 
-This site is just this chat — a single centered conversation over a Three.js deep-space background, no other sections or navigation. Moving the mouse leaves a shooting-star trail streaking across the stars. It's built with Next.js, TypeScript, and Tailwind CSS, with a hand-rolled Three.js scene (a twinkling starfield, soft nebula glows, and the mouse-driven shooting-star particles) for the background. The chat itself is a RAG pipeline: incoming questions are embedded locally (Xenova/transformers, all-MiniLM-L6-v2, no external API), matched against chunks of this very knowledge file, and answered by Llama 3.1 8B via Groq, streamed back in real time.
+This site is just this chat — a single centered conversation over a Three.js deep-space background, no other sections or navigation. Moving the mouse leaves a shooting-star trail streaking across the stars. It's built with Next.js, TypeScript, and Tailwind CSS, with a hand-rolled Three.js scene (a twinkling starfield, soft nebula glows, and the mouse-driven shooting-star particles) for the background. The chat itself is a RAG pipeline: incoming questions are embedded locally (Xenova/transformers, all-MiniLM-L6-v2, no external API), matched against chunks of this very knowledge file, and answered by a Llama-class model on Groq, streamed back in real time. The model isn't hardcoded — Groq retires models on a rolling basis and access is per-account, so on cold start the app asks the API which models the account actually has and picks the best available from a preference list, falling back gracefully if the listing fails. That came out of a real outage: a hardcoded model id was decommissioned and the chat went silent.
 
 This isn't my first portfolio — my original one (built right after finishing the Trybe bootcamp, React + TypeScript + Tailwind) is at portfolio-leodiman.vercel.app, with the source at github.com/leodiman182/portfolio-leodiman. This one is the deliberately stripped-down, second version.
