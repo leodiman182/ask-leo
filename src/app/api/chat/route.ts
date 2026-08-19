@@ -1,7 +1,6 @@
-import { groq } from "@ai-sdk/groq";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 import { getKnowledge } from "@/lib/knowledge";
-import { resolveChatModel } from "@/lib/groq-model";
+import { groq, resolveChatModel } from "@/lib/groq-model";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -52,6 +51,12 @@ export async function POST(req: Request) {
     model: groq(id),
     system: SYSTEM_PROMPT(context),
     messages: await convertToModelMessages(messages),
+    // The SDK's default retries repeat the same request to the same model, which
+    // a rate limit will refuse every time — the production failure logged
+    // "Failed after 3 attempts" for three calls that could never have worked.
+    // Falling to the next model is the useful retry, and that happens a layer
+    // down in the provider's fetch.
+    maxRetries: 0,
     // Reasoning models burn output tokens thinking before they answer: keep that
     // minimal, out of the stream, and leave headroom so it can't truncate the
     // visible reply. Non-reasoning models need neither.
@@ -76,10 +81,15 @@ export async function POST(req: Request) {
       // a visitor with devtools open should not be reading off my portfolio.
       const raw = error instanceof Error ? error.message : String(error);
 
-      // The free tier caps tokens per day, so this is the failure a visitor is
-      // most likely to hit: the chat is fine, the day's budget is gone.
-      if (/rate limit|429|tokens per day|TPD/i.test(raw)) {
+      // The free tier caps tokens both per minute and per day, and the two need
+      // opposite advice: a per-minute burst clears in seconds, so telling that
+      // visitor to come back tomorrow would send them away for nothing.
+      if (/tokens per day|\(TPD\)/i.test(raw)) {
         return "I've had a lot of questions today and hit my daily limit — try again tomorrow, or reach me directly at leonardo.diman@gmail.com.";
+      }
+
+      if (/rate limit|429|tokens per minute|\(TPM\)/i.test(raw)) {
+        return "A few too many questions at once — give me a few seconds and ask again.";
       }
 
       return "Something broke on my end — try again, or reach me directly at leonardo.diman@gmail.com.";
