@@ -114,7 +114,7 @@ function TypingIndicator() {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function ChatSection() {
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
   });
 
@@ -226,6 +226,15 @@ export function ChatSection() {
             {isLoading && messages[messages.length - 1]?.role === "user" && (
               <motion.div key="typing" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <TypingIndicator />
+              </motion.div>
+            )}
+
+            {error && (
+              <motion.div key="error" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <p className="text-sm text-red-300/80">
+                  Something broke on my end — try again, or reach me directly at
+                  leonardo.diman@gmail.com
+                </p>
               </motion.div>
             )}
           </AnimatePresence>

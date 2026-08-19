@@ -1,6 +1,7 @@
 import { groq } from "@ai-sdk/groq";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 import { retrieveContext } from "@/lib/rag";
+import { resolveChatModel } from "@/lib/groq-model";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -45,12 +46,31 @@ export async function POST(req: Request) {
 
   const context = await retrieveContext(query);
 
+  const { id, reasoning } = await resolveChatModel();
+
   const result = streamText({
-    model: groq("llama-3.1-8b-instant"),
+    model: groq(id),
     system: SYSTEM_PROMPT(context),
     messages: await convertToModelMessages(messages),
-    maxOutputTokens: 150,
+    // Reasoning models burn output tokens thinking before they answer: keep that
+    // minimal, out of the stream, and leave headroom so it can't truncate the
+    // visible reply. Non-reasoning models need neither.
+    ...(reasoning
+      ? {
+          providerOptions: {
+            groq: { reasoningEffort: "low", reasoningFormat: "hidden" },
+          },
+          maxOutputTokens: 400,
+        }
+      : { maxOutputTokens: 150 }),
   });
 
-  return result.toUIMessageStreamResponse();
+  return result.toUIMessageStreamResponse({
+    onError: (error) => {
+      // Without this the SDK masks failures as "An error occurred", which is how
+      // the dead-model 404 reached the user as silence.
+      console.error("[chat] stream failed:", error);
+      return error instanceof Error ? error.message : String(error);
+    },
+  });
 }
