@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   outputFileTracingIncludes: {
-    "/api/chat": [
-      "./src/data/knowledge/**/*",
-      "./node_modules/onnxruntime-node/bin/napi-v3/linux/**/*",
-    ],
+    // The knowledge base is read at runtime, so it has to ship with the route.
+    "/api/chat": ["./src/data/knowledge/**/*"],
   },
 };
 
