@@ -19,7 +19,7 @@ I'm actively looking for international remote opportunities where I can contribu
 ## Languages
 
 - Portuguese: Native
-- English: Advanced — fluency certificate from ELS Language Centers (San Diego, CA), plus 4 years teaching English professionally
+- English: Advanced — fluency certificate from ELS Language Centers (San Diego, CA), plus nearly 4 years teaching English professionally
 - Spanish: Intermediate
 
 ## Work Experience
@@ -67,9 +67,9 @@ Stack: HTML, CSS, JavaScript, Bootstrap, React
 
 Taught English for a year, alongside my final year of the International Relations degree at USC, before transitioning into web development.
 
-### Professor — Wizard (Jan 2011 — Dec 2013, Bariri, Brazil)
+### Professor — Wizard (Mar 2011 — Dec 2013, Bariri, Brazil)
 
-Taught English for 3 years, my first professional experience, long before moving into tech.
+Taught English for almost 3 years, my first professional experience, long before moving into tech.
 
 ## Projects
 
@@ -122,19 +122,19 @@ I was born on April 24, 1995 in Bariri, a small city in the interior of São Pau
 
 ### School and my first job (Bariri, until 2013)
 
-I studied at the same school my whole childhood — COEBA (Cooperativa Educacional de Bariri) — from first grade all the way through the end of high school. At 15 I spent a month in San Diego, California on an intensive English course and earned a fluency certificate from ELS Language Centers. Right after I got back, I started teaching English at Wizard in Bariri. That was my first job, at 15, and I stayed for three years.
+I studied at the same school my whole childhood — COEBA (Cooperativa Educacional de Bariri) — from first grade all the way through the end of high school. In January 2011, at 15, I spent a month in San Diego, California on an intensive English course and earned a fluency certificate from ELS Language Centers. I got back and started teaching English at Wizard in Bariri that March. That was my first job, at 15, and I stayed for almost three years.
 
 ### The false start (2014)
 
 Out of high school I passed the entrance exam for a Tourism degree at UNESP in Rosana, SP, and lasted six months before admitting it wasn't what I wanted. I moved back to Bariri and spent the rest of the year commuting daily to Jaú for a university entrance prep course. Dropping out of a degree I'd worked to get into was uncomfortable, but staying in it would have cost far more than the six months did.
 
-### International Relations, the band, and Prague (2015–2018)
+### International Relations, the band, and the Czech Republic (2015–2018)
 
-In 2015 I moved to Bauru to study International Relations at USC — Universidade do Sagrado Coração, and graduated four years later. I've lived in Bauru ever since. Those four years were full: I played in my band Zandare, recording 2 albums and playing 200+ live shows; I spent three months in the Czech Republic through AIESEC, teaching English and music; and in my final year I taught English at CNA.
+In 2015 I moved to Bauru to study International Relations at USC — Universidade do Sagrado Coração, and graduated four years later. I've lived in Bauru ever since. Those four years were full: I played in my band Zandare, recording 2 albums and playing 200+ live shows; I spent three months in Ostrava, in the Czech Republic, through AIESEC, teaching English and music, with a week in Opava as well; and in my final year I taught English at CNA.
 
 ### The pivot (2019–2021)
 
-After graduating I left the band and started Prosa Interior, a podcast I co-hosted as a duo, interviewing people from Bariri who were doing something different with their lives. We recorded 50+ episodes. It was in this same stretch that I found programming and began the career change in earnest — teaching myself until I landed my first developer job at AGA Tecnologia in June 2021. I only started the Trybe full stack bootcamp that November, five months after I was already working as a developer.
+After graduating I left the band and started Prosa Interior, a podcast I co-hosted as a duo, interviewing people from Bariri who were doing something different with their lives. We recorded 50+ episodes. Programming reached me through that same room. A friend of mine, Helisson, owned the studio where we recorded the podcast, and he was the one who pushed me to start studying code. He took me in as an informal intern — nothing official, just someone making room for me — helping me day to day and passing me the simpler real HTML, CSS, and JavaScript tasks from actual client work, so I was learning on live problems instead of exercises. Shortly after that he hired me for real: he became my boss at AGA Tecnologia, where I started as a Junior Web Developer in June 2021, and I began the Trybe full stack bootcamp that November. So I was already working as a developer before the formal training started, and I owe the start of this career to someone who decided to teach me. That's a large part of why I take mentoring seriously now.
 
 ### In tech (2021–present)
 
@@ -152,9 +152,11 @@ The IR background gives me a broader perspective on multicultural teams, communi
 What I'm into these days:
 
 - Gamer and vintage console collector (The Last of Us, Bloodborne, Red Dead Redemption, and Zelda are my favorites)
-- Traveler — a month in San Diego, CA on an intensive English course, and three months in the Czech Republic through AIESEC, teaching English and music
+- Traveler — a month in San Diego, CA on an intensive English course, and three months living in Ostrava, Czech Republic through AIESEC, teaching English and music (plus a week in Opava)
 - Camping, offroad, and nature lover
 - Football and basketball fan — São Paulo FC in football, Bauru Basket and the NBA in basketball
+- CrossFit — training daily since mid-2025. I practice it, I don't watch it
+- Basketball — I play it too, not just follow it
 
 Fun facts about me — things I did in the past, not things I still do:
 
@@ -165,11 +167,11 @@ Fun facts about me — things I did in the past, not things I still do:
 
 ### Favorite foods
 
-My favorite foods and desserts: pancakes (panqueca), hamburgers, doce de leite, key lime pie (torta de limão), and cheesecake. Sweet tooth is a real part of the package — doce de leite, torta de limão, and cheesecake are the three I never turn down.
+My favorite foods and desserts: pancakes (panqueca), hamburgers, doce de leite, key lime pie (torta de limão), and cheesecake. I lean savory over sweet — the pancakes and a good hamburger come first — with doce de leite as the one dessert I'd put above the rest.
 
 ### Favorite sports and teams
 
-Football (soccer) is my main sport — I support São Paulo Futebol Clube, and I follow plenty of other leagues beyond Brazilian football. I'm also a big basketball fan: I follow the NBA closely and I root for Bauru Basket in the NBB (Novo Basquete Brasil), the team from the city I live in.
+Football (soccer) is my main sport — I support São Paulo Futebol Clube, and I follow plenty of other leagues beyond Brazilian football. I'm also a big basketball fan: I follow the NBA closely and I root for Bauru Basket in the NBB (Novo Basquete Brasil), the team from the city I live in. Basketball I also play myself, not just watch. CrossFit is different: I've trained daily since mid-2025, but it's purely something I practice — I don't follow it as a spectator sport.
 
 ### Favorite TV series
 
@@ -185,7 +187,7 @@ My favorite video games: The Last of Us Part I and Part II, Bloodborne, Red Dead
 
 ### Favorite bands and music
 
-My favorite bands: Blink-182, Green Day, Forfun, Passafire, Red Hot Chili Peppers, Bullet Bane, Rancore, CPM 22, and Charlie Brown Jr. Punk rock, rock nacional brasileiro, and reggae/rock blends are the core of what I listen to — it's the same world I came from back when I played in Zandare — 2 albums and 200+ live shows. I don't play anymore, so that one's a fun fact about me rather than something I still do.
+My favorite bands: Blink-182, Green Day, Forfun, Passafire, Red Hot Chili Peppers, Bullet Bane, Rancore, CPM 22, and Charlie Brown Jr. Those are the favorites, but I listen to far more than that — reggae to jazz, samba to metal. They're the world I came from back when I played in Zandare — 2 albums and 200+ live shows. I don't play anymore, so that one's a fun fact about me rather than something I still do.
 
 ## Work Philosophy & Personality
 
