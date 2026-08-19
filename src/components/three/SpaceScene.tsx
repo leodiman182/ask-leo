@@ -22,7 +22,7 @@ export default function SpaceScene() {
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
-    // Soft circular texture, reused for nebula glows
+    // Soft circular texture, reused for nebula glows and the comet head
     const makeCircleTex = () => {
       const c = document.createElement("canvas");
       c.width = 64; c.height = 64;
@@ -127,57 +127,133 @@ export default function SpaceScene() {
       return mesh;
     });
 
-    // ── MOUSE-DRIVEN SHOOTING STAR TRAIL ────────────────────────────────────
-    const TRAIL_MAX = 140;
-    const trailPos   = new Float32Array(TRAIL_MAX * 3);
-    const trailVel   = new Float32Array(TRAIL_MAX * 3);
-    const trailLife  = new Float32Array(TRAIL_MAX).fill(1); // 1 = dead/invisible
-    let trailCursor = 0;
+    // ── COMET TAIL (the cursor is a shooting star) ───────────────────────────
+    // The tail is a triangle strip built from a chain of followers: node 0 is
+    // the comet head, every other node eases toward the one ahead of it. The
+    // chain stretches while the cursor moves and collapses into the head when
+    // it stops, so the tail lengthens and vanishes on its own.
+    const TAIL_NODES = 30;
+    const tailX = new Float32Array(TAIL_NODES);
+    const tailY = new Float32Array(TAIL_NODES);
 
-    const trailGeo = new THREE.BufferGeometry();
-    trailGeo.setAttribute("position", new THREE.BufferAttribute(trailPos, 3));
-    trailGeo.setAttribute("aLife", new THREE.BufferAttribute(trailLife, 1));
+    const tailPos = new Float32Array(TAIL_NODES * 2 * 3); // 2 verts per node
+    const tailT   = new Float32Array(TAIL_NODES * 2);     // 0 at head → 1 at tip
+    const tailIdx: number[] = [];
+    for (let i = 0; i < TAIL_NODES; i++) {
+      const t = i / (TAIL_NODES - 1);
+      tailT[i * 2] = t;
+      tailT[i * 2 + 1] = t;
+      if (i < TAIL_NODES - 1) {
+        const a = i * 2;
+        tailIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+      }
+    }
 
-    const trailMat = new THREE.ShaderMaterial({
+    const tailGeo = new THREE.BufferGeometry();
+    tailGeo.setAttribute("position", new THREE.BufferAttribute(tailPos, 3));
+    tailGeo.setAttribute("aT", new THREE.BufferAttribute(tailT, 1));
+    tailGeo.setIndex(tailIdx);
+
+    const tailMat = new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending,
+      uniforms: { uStrength: { value: 0 } },
+      vertexShader: `
+        attribute float aT;
+        varying float vT;
+        void main() {
+          vT = aT;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float uStrength;
+        varying float vT;
+        void main() {
+          // White-hot at the head, cooling to blue then violet down the tail.
+          vec3 hot   = vec3(1.00, 0.98, 0.92);
+          vec3 mid   = vec3(0.55, 0.78, 1.00);
+          vec3 cold  = vec3(0.45, 0.32, 0.95);
+          vec3 col = mix(hot, mid, smoothstep(0.0, 0.35, vT));
+          col = mix(col, cold, smoothstep(0.35, 1.0, vT));
+          float fade = pow(1.0 - vT, 2.4);
+          gl_FragColor = vec4(col, fade * uStrength * 0.8);
+        }
+      `,
+    });
+    scene.add(new THREE.Mesh(tailGeo, tailMat));
+
+    // Bright core at the cursor itself.
+    const headMat = new THREE.MeshBasicMaterial({
+      map: circleTex, color: 0xdfeaff, transparent: true, opacity: 0,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    });
+    const headMesh = new THREE.Mesh(new THREE.CircleGeometry(0.55, 20), headMat);
+    scene.add(headMesh);
+
+    // ── SPARKS SHED BY THE COMET ─────────────────────────────────────────────
+    const SPARK_MAX = 150;
+    const sparkPos  = new Float32Array(SPARK_MAX * 3);
+    const sparkVel  = new Float32Array(SPARK_MAX * 3);
+    const sparkLife = new Float32Array(SPARK_MAX).fill(1); // 1 = dead
+    const sparkDecay = new Float32Array(SPARK_MAX).fill(1);
+    const sparkSeed = new Float32Array(SPARK_MAX);
+    let sparkCursor = 0;
+
+    const sparkGeo = new THREE.BufferGeometry();
+    sparkGeo.setAttribute("position", new THREE.BufferAttribute(sparkPos, 3));
+    sparkGeo.setAttribute("aLife", new THREE.BufferAttribute(sparkLife, 1));
+    sparkGeo.setAttribute("aSeed", new THREE.BufferAttribute(sparkSeed, 1));
+
+    const sparkMat = new THREE.ShaderMaterial({
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
-      uniforms: {},
       vertexShader: `
         attribute float aLife;
+        attribute float aSeed;
         varying float vLife;
+        varying float vSeed;
         void main() {
           vLife = aLife;
+          vSeed = aSeed;
           vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
-          float size = mix(0.22, 0.02, aLife);
+          float size = mix(0.11, 0.008, aLife) * (0.6 + aSeed * 0.8);
           gl_PointSize = size * (260.0 / -mvPos.z);
           gl_Position = projectionMatrix * mvPos;
         }
       `,
       fragmentShader: `
         varying float vLife;
+        varying float vSeed;
         void main() {
           float d = length(gl_PointCoord - vec2(0.5));
           if (d > 0.5) discard;
           float edge = smoothstep(0.5, 0.0, d);
-          float alpha = edge * (1.0 - vLife);
-          vec3 col = mix(vec3(0.65, 0.85, 1.0), vec3(1.0, 1.0, 0.98), 1.0 - vLife);
-          gl_FragColor = vec4(col, alpha);
+          // Embers cool from white to amber as they fall away.
+          vec3 col = mix(vec3(1.0, 0.98, 0.94), vec3(1.0, 0.62, 0.30), vLife * (0.5 + vSeed * 0.5));
+          gl_FragColor = vec4(col, edge * (1.0 - vLife) * 0.9);
         }
       `,
     });
-    scene.add(new THREE.Points(trailGeo, trailMat));
+    scene.add(new THREE.Points(sparkGeo, sparkMat));
 
-    const spawnSpark = (x: number, y: number, z: number, vx: number, vy: number) => {
-      const i = trailCursor;
-      trailCursor = (trailCursor + 1) % TRAIL_MAX;
-      trailPos[i * 3]     = x + (Math.random() - 0.5) * 0.05;
-      trailPos[i * 3 + 1] = y + (Math.random() - 0.5) * 0.05;
-      trailPos[i * 3 + 2] = z;
-      trailVel[i * 3]     = vx * 0.02 + (Math.random() - 0.5) * 0.003;
-      trailVel[i * 3 + 1] = vy * 0.02 + (Math.random() - 0.5) * 0.003;
-      trailVel[i * 3 + 2] = 0;
-      trailLife[i] = 0;
+    const spawnSpark = (x: number, y: number, vx: number, vy: number) => {
+      const i = sparkCursor;
+      sparkCursor = (sparkCursor + 1) % SPARK_MAX;
+      const spread = 0.35;
+      sparkPos[i * 3]     = x + (Math.random() - 0.5) * 0.12;
+      sparkPos[i * 3 + 1] = y + (Math.random() - 0.5) * 0.12;
+      sparkPos[i * 3 + 2] = 0;
+      // Embers keep a fraction of the comet's motion, plus a little scatter.
+      sparkVel[i * 3]     = -vx * 0.06 + (Math.random() - 0.5) * spread * 0.04;
+      sparkVel[i * 3 + 1] = -vy * 0.06 + (Math.random() - 0.5) * spread * 0.04;
+      sparkVel[i * 3 + 2] = 0;
+      sparkLife[i] = 0;
+      sparkDecay[i] = 0.03 + Math.random() * 0.04;
+      sparkSeed[i] = Math.random();
     };
 
     // Converts a screen-space mouse position into a world point on the
@@ -193,41 +269,36 @@ export default function SpaceScene() {
       return { x: ndcX * halfW, y: ndcY * halfH };
     };
 
-    let lastMouse: { x: number; y: number } | null = null;
+    const pointer = { x: 0, y: 0 };
+    let pointerSeen = false;
     const mouseTarget = { x: 0, y: 0 };
 
     const onPointerMove = (e: PointerEvent) => {
       const p = worldFromMouse(e.clientX, e.clientY);
+      pointer.x = p.x;
+      pointer.y = p.y;
       mouseTarget.x = e.clientX / window.innerWidth - 0.5;
       mouseTarget.y = e.clientY / window.innerHeight - 0.5;
 
-      if (lastMouse) {
-        const dx = p.x - lastMouse.x;
-        const dy = p.y - lastMouse.y;
-        const dist = Math.hypot(dx, dy);
-        const steps = Math.min(Math.ceil(dist / 0.08), 12);
-        for (let s = 1; s <= steps; s++) {
-          const t = s / steps;
-          spawnSpark(
-            lastMouse.x + dx * t,
-            lastMouse.y + dy * t,
-            0,
-            dx / (steps * 0.016),
-            dy / (steps * 0.016)
-          );
-        }
+      if (!pointerSeen) {
+        pointerSeen = true;
+        for (let i = 0; i < TAIL_NODES; i++) { tailX[i] = p.x; tailY[i] = p.y; }
+        headMesh.position.set(p.x, p.y, 0);
       }
-      lastMouse = p;
     };
     window.addEventListener("pointermove", onPointerMove);
 
     // ── ANIMATION ─────────────────────────────────────────────────────────────
     let frameId: number;
     let time = 0;
-    const trailPosAttr  = trailGeo.attributes.position as THREE.BufferAttribute;
-    const trailLifeAttr = trailGeo.attributes.aLife as THREE.BufferAttribute;
+    const sparkPosAttr  = sparkGeo.attributes.position as THREE.BufferAttribute;
+    const sparkLifeAttr = sparkGeo.attributes.aLife as THREE.BufferAttribute;
+    const sparkSeedAttr = sparkGeo.attributes.aSeed as THREE.BufferAttribute;
+    const tailPosAttr   = tailGeo.attributes.position as THREE.BufferAttribute;
     let parallaxX = 0;
     let parallaxY = 0;
+    let speed = 0;      // smoothed head speed, drives glow and tail opacity
+    let sparkDebt = 0;  // fractional sparks carried between frames
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
@@ -235,14 +306,83 @@ export default function SpaceScene() {
 
       starMat.uniforms.uTime.value = time;
 
-      for (let i = 0; i < TRAIL_MAX; i++) {
-        if (trailLife[i] >= 1) continue;
-        trailLife[i] += 0.045;
-        trailPos[i * 3]     += trailVel[i * 3];
-        trailPos[i * 3 + 1] += trailVel[i * 3 + 1];
+      if (pointerSeen) {
+        // Head chases the cursor with a slight lag, which is what gives the
+        // trail its swooping, comet-like curve.
+        const hx = tailX[0], hy = tailY[0];
+        const nx = hx + (pointer.x - hx) * 0.28;
+        const ny = hy + (pointer.y - hy) * 0.28;
+        const vx = nx - hx;
+        const vy = ny - hy;
+        tailX[0] = nx;
+        tailY[0] = ny;
+
+        const inst = Math.hypot(vx, vy);
+        speed += (inst - speed) * 0.2;
+
+        // Each node eases toward the one in front, more loosely down the tail.
+        for (let i = 1; i < TAIL_NODES; i++) {
+          const ease = 0.62 - (i / TAIL_NODES) * 0.14;
+          tailX[i] += (tailX[i - 1] - tailX[i]) * ease;
+          tailY[i] += (tailY[i - 1] - tailY[i]) * ease;
+        }
+
+        // Ribbon: offset each node along its own perpendicular, tapering out.
+        const HEAD_WIDTH = 0.035;
+        for (let i = 0; i < TAIL_NODES; i++) {
+          const ax = tailX[Math.max(i - 1, 0)];
+          const ay = tailY[Math.max(i - 1, 0)];
+          const bx = tailX[Math.min(i + 1, TAIL_NODES - 1)];
+          const by = tailY[Math.min(i + 1, TAIL_NODES - 1)];
+          let dx = bx - ax;
+          let dy = by - ay;
+          const len = Math.hypot(dx, dy) || 1;
+          dx /= len; dy /= len;
+
+          const t = i / (TAIL_NODES - 1);
+          // Slight bulge just behind the head, then a long taper to a point.
+          const w = HEAD_WIDTH * (0.55 + 0.45 * Math.sin(t * Math.PI * 0.9)) *
+                    Math.pow(1 - t, 1.1) * Math.min(1, 0.35 + speed * 6);
+
+          const px = -dy * w;
+          const py = dx * w;
+          const o = i * 6;
+          tailPos[o]     = tailX[i] + px;
+          tailPos[o + 1] = tailY[i] + py;
+          tailPos[o + 2] = 0;
+          tailPos[o + 3] = tailX[i] - px;
+          tailPos[o + 4] = tailY[i] - py;
+          tailPos[o + 5] = 0;
+        }
+        tailPosAttr.needsUpdate = true;
+        tailMat.uniforms.uStrength.value = Math.min(1, speed * 9);
+
+        headMesh.position.set(tailX[0], tailY[0], 0);
+        const glow = Math.min(1, 0.18 + speed * 7);
+        headMat.opacity = glow * 0.55;
+        const s = 0.16 + glow * 0.34;
+        headMesh.scale.set(s, s, 1);
+
+        // Shed embers in proportion to distance travelled, not frame count.
+        sparkDebt += inst * 20;
+        while (sparkDebt >= 1) {
+          sparkDebt -= 1;
+          spawnSpark(tailX[0], tailY[0], vx / 0.016, vy / 0.016);
+        }
       }
-      trailPosAttr.needsUpdate = true;
-      trailLifeAttr.needsUpdate = true;
+
+      for (let i = 0; i < SPARK_MAX; i++) {
+        if (sparkLife[i] >= 1) continue;
+        sparkLife[i] = Math.min(1, sparkLife[i] + sparkDecay[i]);
+        sparkVel[i * 3]     *= 0.965;
+        sparkVel[i * 3 + 1] *= 0.965;
+        sparkVel[i * 3 + 1] -= 0.00035; // embers drift downward as they die
+        sparkPos[i * 3]     += sparkVel[i * 3];
+        sparkPos[i * 3 + 1] += sparkVel[i * 3 + 1];
+      }
+      sparkPosAttr.needsUpdate = true;
+      sparkLifeAttr.needsUpdate = true;
+      sparkSeedAttr.needsUpdate = true;
 
       // Gentle parallax drift of the starfield toward the cursor.
       parallaxX += (mouseTarget.x - parallaxX) * 0.02;
